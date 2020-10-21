@@ -1,4 +1,4 @@
-package tests;
+package ru.stqa.selenium.tests;
 
 
 import org.openqa.selenium.support.PageFactory;

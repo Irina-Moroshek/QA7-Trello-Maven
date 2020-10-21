@@ -1,4 +1,4 @@
-package tests;
+package ru.stqa.selenium.tests;
 
 import java.io.IOException;
 import java.net.URL;
