@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.selenium.pages.*;
+import ru.stqa.selenium.util.DataProviders;
 
 public class CurrentBoardTests extends TestBase {
     LoginPageHelper loginPage;
@@ -36,10 +37,10 @@ public class CurrentBoardTests extends TestBase {
     }
 
     //Sel-07
-    @Test
-    public void addListToBoardPositive() {
+    @Test (dataProviderClass = DataProviders.class, dataProvider = "dataProviderCreateList")
+    public void addListToBoardPositive(String name) {
         int listsBeforeAdding = qaHafa7currentBoard.getListsQuantity();
-        qaHafa7currentBoard.createNewList();
+        qaHafa7currentBoard.createNewList(name);
         int listsAfterAdding = qaHafa7currentBoard.getListsQuantity();
         Assert.assertEquals(listsBeforeAdding + 1, listsAfterAdding,
                 "The quantity of lists is not equal to expected quantitty");
@@ -48,9 +49,9 @@ public class CurrentBoardTests extends TestBase {
 
     //Sel-09 - если лист есть, сразу отпрвялет в архив; если листа нет - создает лист, и потом отправляет в архив
     @Test
-    public void putAnyListToArchive() {
+    public void putAnyListToArchive(String name) {
         if (qaHafa7currentBoard.getNameOfAddListButton().equals("Add a list")) {
-            qaHafa7currentBoard.createNewList();
+            qaHafa7currentBoard.createNewList(name);
         }
         int quantityListsInTheBeginning = qaHafa7currentBoard.getListsQuantity();
         qaHafa7currentBoard.openExtraMenuForFirstList();

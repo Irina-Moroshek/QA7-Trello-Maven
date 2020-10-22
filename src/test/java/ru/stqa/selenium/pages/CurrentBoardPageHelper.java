@@ -60,9 +60,9 @@ public class CurrentBoardPageHelper extends PageBase{
     }
 
     public void waitUntilPageIsLoaded() {
-        waitUntilElementIsClickable(boardsButton,15);
-        waitUntilElementIsVisible(header,10);
-        waitUntilElementsAreVisible(addCardButtonList,15);
+        waitUntilElementIsClickable(boardsButton,30);
+        waitUntilElementIsVisible(header,20);
+        waitUntilElementsAreVisible(addCardButtonList,20);
     }
 
     public String getCurrentBoardHeader(){
@@ -95,9 +95,9 @@ public class CurrentBoardPageHelper extends PageBase{
         return addListButton.getText();
     }
 
-    public void createNewList() {
+    public void createNewList(String name) {
         this.initiateAddList();
-        this.fillTheNameAndSubmit("test");
+        this.fillTheNameAndSubmit(name);
         this.cancelTheNewAddingList();
     }
     public void putTheListToArchive() {

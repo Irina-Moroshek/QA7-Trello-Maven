@@ -77,7 +77,7 @@ public class LoginPageHelper extends PageBase{
         return this;
     }
     public LoginPageHelper submitAsAttlassian() {
-        waitUntilElementIsClickable(loginButtonAttl,10);
+        waitUntilElementIsClickable(loginButtonAttl,20);
         loginButtonAttl.click();
         waitUntilElementIsClickable(passwordField,20);
         return this;

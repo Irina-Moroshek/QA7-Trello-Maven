@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.selenium.pages.*;
+import ru.stqa.selenium.util.DataProviders;
 
 
 public class LoginTests extends TestBase {
@@ -49,12 +50,21 @@ public class LoginTests extends TestBase {
         }
 
         //Sel-06
-        @Test
-        public void loginPositiveTest ()  {
-            loginPage.loginAsAttlassian(LOGIN,PASSWORD);
+        @Test (dataProviderClass = DataProviders.class,dataProvider = "dataProviderFirst")
+        public void loginPositiveTest (String login, String password)  {
+            loginPage.loginAsAttlassian(login, password);
             boardsPage.waitUntilPageIsLoaded();
             Assert.assertTrue(boardsPage.getBoadsIconName().equals("Boards"),"The text on the button is not 'Board'");
         }
+
+        //Sel-17
+   @Test(dataProviderClass = DataProviders.class,dataProvider = "dataProviderLoginIncorrect")
+   public void loginNegativeLoginIncorrect (String login, String password, String error){
+       loginPage.loginNotAttlassian(login,password);
+       Assert.assertTrue(loginPage.getErrorMessage().equals(error),"The text on the button incorrect'");
+
+   }
+
 }
 
 

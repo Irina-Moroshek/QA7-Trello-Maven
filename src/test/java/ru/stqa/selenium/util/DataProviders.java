@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class DataProviders {
     @DataProvider
+   //здесь берем иноформацию из файла
     public static Iterator<Object[]> dataProviderFirst() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 DataProviders.class
@@ -29,10 +30,12 @@ public class DataProviders {
 
 
     @DataProvider
+    //здесь указываем разные наборы для проверки входных параметров
     public static Iterator<Object[]> dataProviderSecond() {
         List<Object[]> data = new ArrayList();
-        data.add(new Object[]{"data11", "data12", "data13"});
-        data.add(new Object[]{"data21", "data22", "data23"});
+        data.add(new Object[]{"irina_moroshek@mail.ru", "iae062322"});
+        data.add(new Object[]{"irina_moroshek@mail.ru", "data22"});
+        //data.add(new Object[]{"irina_moroshek@mail.ru", "iae062322"});
 
         return data.iterator();
     }
@@ -60,8 +63,34 @@ public class DataProviders {
         return "pass" + (new Random()).nextInt();
     }
 
+    @DataProvider
+    //здесь берем иноформацию из файла
+    public static Iterator<Object[]> dataProviderCreateList() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                DataProviders.class
+                        .getResourceAsStream("/createList.data")));
+
+        List<Object[]> userData = new ArrayList<Object[]>();
+        String line = in.readLine();
+        while (line != null) {
+            userData.add(line.split(";"));
+            line = in.readLine();
+        }
+        in.close();
+        return userData.iterator();
+    }
 
 
+    @DataProvider
+    //Sel-17
+    public static Iterator<Object[]> dataProviderLoginIncorrect() {
+        List<Object[]> data = new ArrayList();
+        data.add(new Object[]{"", "iae062322","Missing email"});
+        data.add(new Object[]{"irina_moroshekmail.ru", "1234", "There isn't an account for this username"});
+        data.add(new Object[]{"i_moroshek@mail.ru", "iu90", "There isn't an account for this email"});
+
+        return data.iterator();
+    }
 
 }
 
