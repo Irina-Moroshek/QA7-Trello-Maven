@@ -123,4 +123,6 @@ public class CurrentBoardPageHelper extends PageBase{
         xCardButton.click();
 
     }
+
+
 }

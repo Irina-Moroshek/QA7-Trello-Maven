@@ -37,7 +37,7 @@ public class CurrentBoardTests extends TestBase {
     }
 
     //Sel-07
-    @Test (dataProviderClass = DataProviders.class, dataProvider = "dataProviderCreateList")
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "dataProviderCreateList")
     public void addListToBoardPositive(String name) {
         int listsBeforeAdding = qaHafa7currentBoard.getListsQuantity();
         qaHafa7currentBoard.createNewList(name);
@@ -60,6 +60,14 @@ public class CurrentBoardTests extends TestBase {
         Assert.assertEquals(quantityListsAtTheEnd, quantityListsInTheBeginning - 1,
                 "The quantityListsAtTheEnd is not quantityListsInTheBeginning-1");
     }
+
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "dataProviderCreateListName")
+    public void addListToBoardPositiveCreateListNameRandom (String name) {
+        int listsBeforeAdding = qaHafa7currentBoard.getListsQuantity();
+        qaHafa7currentBoard.createNewList(name);
+        int listsAfterAdding = qaHafa7currentBoard.getListsQuantity();
+        Assert.assertEquals(listsBeforeAdding + 1, listsAfterAdding,
+                "The quantity of lists is not equal to expected quantitty");
+    }
 }
-
-

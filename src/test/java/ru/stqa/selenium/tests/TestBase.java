@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeSuite;
 
 import ru.stqa.selenium.SuiteConfiguration;
 import ru.stqa.selenium.factory.WebDriverPool;
+import ru.stqa.selenium.util.LogLog4j;
 
 /**
  * Base class for TestNG-based test classes
@@ -22,6 +23,7 @@ import ru.stqa.selenium.factory.WebDriverPool;
 public class TestBase {
   public static final String LOGIN = "irina_moroshek@mail.ru";
   public static final String PASSWORD = "iae062322";
+  public static LogLog4j log4j = new LogLog4j();
 
   protected static URL gridHubUrl = null;
   protected static String baseUrl;
