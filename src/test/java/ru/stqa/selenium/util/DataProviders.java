@@ -1,5 +1,6 @@
 package ru.stqa.selenium.util;
 
+
 import org.testng.annotations.DataProvider;
 
 import java.io.BufferedReader;
@@ -132,9 +133,51 @@ public class DataProviders {
 
         return "pass" + (new Random()).nextInt();
     }
-}
 
+    //Sel-18 вариант 1  генерация названия листа
+    @DataProvider
+    public Iterator<Object[]> dataProviderCreateListName() {
+        List<Object[]> data = new ArrayList();
+        for (int i = 0; i < 4; ++i) {
+            data.add(new Object[]{this.generateRandomListName()});
+        }
+        return data.iterator();
+    }
 
-    //генерация названия листа
+    public static String generateRandomListName() {
+        char[] alphabet =
+                "abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890".toCharArray();
+        int min = 2;
+        int max = 11;
+        Random genName = new Random();
+        int num = 2 + genName.nextInt(max - min);
+        StringBuilder result = new StringBuilder();
+        int i;
+        for (i = 0; i < num; i++) {
+            result.append(alphabet[genName.nextInt(alphabet.length)]);
+        }
+        return result.toString();
+    }
 
+    //Sel-18 вариант 2  генерация названия листа
+    @DataProvider
+    public Iterator<Object[]> dataProviderCreateListName2() {
+        List<Object[]> data = new ArrayList();
+        for (int i = 0; i < 4; ++i) {
+            data.add(new Object[]{this.generateRandomListName2()});
+        }
+        return data.iterator();
+    }
+        public static String generateRandomListName2 () {
+            char[] alphabet =
+                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890".toCharArray();
+            Random genName2 = new Random();
+            int num = 2 + genName2.nextInt(11 - 2);
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < num; i++) {
+                result.append(alphabet[genName2.nextInt(alphabet.length)]);
+            }
+            return result.toString();
+        }
+    }
 
